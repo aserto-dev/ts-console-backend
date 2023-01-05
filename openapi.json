@@ -1,0 +1,229 @@
+{
+  "components": {
+    "schemas": {
+      "protobufAny": {
+        "additionalProperties": {},
+        "properties": {
+          "@type": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "protobufNullValue": {
+        "default": "NULL_VALUE",
+        "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value.",
+        "enum": [
+          "NULL_VALUE"
+        ],
+        "type": "string"
+      },
+      "rpcStatus": {
+        "properties": {
+          "code": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "details": {
+            "items": {
+              "$ref": "#/components/schemas/protobufAny"
+            },
+            "type": "array"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "v1GetTenantResponse": {
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/v1TenantProperties"
+          }
+        },
+        "type": "object"
+      },
+      "v1ListTenantMemberResponse": {
+        "properties": {
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/v1TenantMember"
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      },
+      "v1TenantMember": {
+        "properties": {
+          "display_name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "picture": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          }
+        },
+        "type": "object"
+      },
+      "v1TenantProperties": {
+        "properties": {
+          "display_name": {
+            "type": "string"
+          },
+          "hash": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "key": {
+            "type": "string"
+          },
+          "properties": {
+            "type": "object"
+          }
+        },
+        "type": "object"
+      },
+      "v1UpdateTenantResponse": {
+        "properties": {
+          "result": {
+            "$ref": "#/components/schemas/v1TenantProperties"
+          }
+        },
+        "type": "object"
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "API documentation",
+    "url": "https://docs.aserto.com"
+  },
+  "info": {
+    "contact": {
+      "email": "support@aserto.com",
+      "name": "API Support",
+      "url": "https://aserto.com/support"
+    },
+    "description": "Console Backend",
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "termsOfService": "https://aserto.com/terms/",
+    "title": "Console Backend",
+    "version": "v0.0.3"
+  },
+  "openapi": "3.0.3",
+  "paths": {
+    "/api/v1/ds0/tenant": {
+      "get": {
+        "operationId": "ConsoleBackend_GetTenant",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1GetTenantResponse"
+                }
+              }
+            },
+            "description": "A successful response."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            },
+            "description": "An unexpected error response."
+          }
+        },
+        "tags": [
+          "ConsoleBackend"
+        ]
+      },
+      "put": {
+        "operationId": "ConsoleBackend_UpdateTenant",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1UpdateTenantResponse"
+                }
+              }
+            },
+            "description": "A successful response."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            },
+            "description": "An unexpected error response."
+          }
+        },
+        "tags": [
+          "ConsoleBackend"
+        ]
+      }
+    },
+    "/api/v1/list-tenant-members": {
+      "get": {
+        "operationId": "ConsoleBackend_ListTenantMember",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/v1ListTenantMemberResponse"
+                }
+              }
+            },
+            "description": "A successful response."
+          },
+          "default": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/rpcStatus"
+                }
+              }
+            },
+            "description": "An unexpected error response."
+          }
+        },
+        "tags": [
+          "ConsoleBackend"
+        ]
+      }
+    }
+  },
+  "servers": [
+    {
+      "description": "Console Backend service",
+      "url": "https://aserto-console-backend.prod.aserto.com"
+    }
+  ],
+  "tags": [
+    {
+      "name": "ConsoleBackend"
+    }
+  ]
+}
