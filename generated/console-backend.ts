@@ -8,6 +8,9 @@ export interface paths {
     get: operations["ConsoleBackend_GetTenant"];
     put: operations["ConsoleBackend_UpdateTenant"];
   };
+  "/api/v1/ds0/user": {
+    get: operations["ConsoleBackend_GetUser"];
+  };
   "/api/v1/list-tenant-members": {
     get: operations["ConsoleBackend_ListTenantMember"];
   };
@@ -35,10 +38,20 @@ export interface components {
       message?: string;
     };
     v1GetTenantResponse: {
-      result?: components["schemas"]["v1TenantProperties"];
+      result?: components["schemas"]["v1Tenant"];
+    };
+    v1GetUserResponse: {
+      result?: components["schemas"]["v1User"];
     };
     v1ListTenantMemberResponse: {
       results?: components["schemas"]["v1TenantMember"][];
+    };
+    v1Tenant: {
+      display_name?: string;
+      hash?: string;
+      id?: string;
+      key?: string;
+      properties?: { [key: string]: unknown };
     };
     v1TenantMember: {
       display_name?: string;
@@ -47,15 +60,16 @@ export interface components {
       picture?: string;
       role?: string;
     };
-    v1TenantProperties: {
+    v1UpdateTenantResponse: {
+      result?: components["schemas"]["v1Tenant"];
+    };
+    v1User: {
       display_name?: string;
+      email?: string;
       hash?: string;
       id?: string;
       key?: string;
       properties?: { [key: string]: unknown };
-    };
-    v1UpdateTenantResponse: {
-      result?: components["schemas"]["v1TenantProperties"];
     };
   };
 }
@@ -83,6 +97,22 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["v1UpdateTenantResponse"];
+        };
+      };
+      /** An unexpected error response. */
+      default: {
+        content: {
+          "application/json": components["schemas"]["rpcStatus"];
+        };
+      };
+    };
+  };
+  ConsoleBackend_GetUser: {
+    responses: {
+      /** A successful response. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["v1GetUserResponse"];
         };
       };
       /** An unexpected error response. */
