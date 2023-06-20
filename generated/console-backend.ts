@@ -42,7 +42,7 @@ export interface components {
       message?: string;
     };
     v1Account: {
-      default_tenant?: string;
+      default_tenant_id?: string;
       display_name?: string;
       email?: string;
       id?: string;
