@@ -4,6 +4,9 @@
  */
 
 export interface paths {
+  "/api/v1/ds0/account": {
+    get: operations["ConsoleBackend_GetAccount"];
+  };
   "/api/v1/ds0/tenant": {
     get: operations["ConsoleBackend_GetTenant"];
     put: operations["ConsoleBackend_UpdateTenant"];
@@ -37,6 +40,17 @@ export interface components {
       details?: components["schemas"]["protobufAny"][];
       message?: string;
     };
+    v1Account: {
+      default_organization?: string;
+      display_name?: string;
+      email?: string;
+      id?: string;
+      organizations?: components["schemas"]["v1Organization"][];
+      picture?: string;
+    };
+    v1GetAccountResponse: {
+      result?: components["schemas"]["v1Account"];
+    };
     v1GetTenantResponse: {
       result?: components["schemas"]["v1Tenant"];
     };
@@ -45,6 +59,12 @@ export interface components {
     };
     v1ListTenantMemberResponse: {
       results?: components["schemas"]["v1TenantMember"][];
+    };
+    v1Organization: {
+      id?: string;
+      name?: string;
+      personal?: boolean;
+      role?: string;
     };
     v1Tenant: {
       display_name?: string;
@@ -75,6 +95,22 @@ export interface components {
 }
 
 export interface operations {
+  ConsoleBackend_GetAccount: {
+    responses: {
+      /** A successful response. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["v1GetAccountResponse"];
+        };
+      };
+      /** An unexpected error response. */
+      default: {
+        content: {
+          "application/json": components["schemas"]["rpcStatus"];
+        };
+      };
+    };
+  };
   ConsoleBackend_GetTenant: {
     responses: {
       /** A successful response. */
