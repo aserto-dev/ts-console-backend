@@ -1,6 +1,6 @@
 {
   "name": "@aserto/ts-console-backend",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Aserto Console Backend TypeScript type definitions.",
   "types": "index.d.ts",
   "sideEffects": false,

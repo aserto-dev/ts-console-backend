@@ -65,6 +65,7 @@ export interface components {
     v1Organization: {
       id?: string;
       name?: string;
+      personal?: boolean;
     };
     v1Tenant: {
       display_name?: string;
