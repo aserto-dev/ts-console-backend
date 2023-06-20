@@ -6,6 +6,7 @@
 export interface paths {
   "/api/v1/ds0/account": {
     get: operations["ConsoleBackend_GetAccount"];
+    put: operations["ConsoleBackend_UpdateAccountDefaultOrganization"];
   };
   "/api/v1/ds0/tenant": {
     get: operations["ConsoleBackend_GetTenant"];
@@ -41,12 +42,13 @@ export interface components {
       message?: string;
     };
     v1Account: {
-      default_organization?: string;
+      default_tenant?: string;
       display_name?: string;
       email?: string;
       id?: string;
-      organizations?: components["schemas"]["v1Organization"][];
+      personal_tenant?: components["schemas"]["v1Organization"];
       picture?: string;
+      tenants?: components["schemas"]["v1Organization"][];
     };
     v1GetAccountResponse: {
       result?: components["schemas"]["v1Account"];
@@ -63,8 +65,6 @@ export interface components {
     v1Organization: {
       id?: string;
       name?: string;
-      personal?: boolean;
-      role?: string;
     };
     v1Tenant: {
       display_name?: string;
@@ -79,6 +79,9 @@ export interface components {
       id?: string;
       picture?: string;
       role?: string;
+    };
+    v1UpdateAccountDefaultOrganizationResponse: {
+      result?: components["schemas"]["v1Account"];
     };
     v1UpdateTenantResponse: {
       result?: components["schemas"]["v1Tenant"];
@@ -101,6 +104,27 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["v1GetAccountResponse"];
+        };
+      };
+      /** An unexpected error response. */
+      default: {
+        content: {
+          "application/json": components["schemas"]["rpcStatus"];
+        };
+      };
+    };
+  };
+  ConsoleBackend_UpdateAccountDefaultOrganization: {
+    parameters: {
+      query: {
+        default_organization?: string;
+      };
+    };
+    responses: {
+      /** A successful response. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["v1UpdateAccountDefaultOrganizationResponse"];
         };
       };
       /** An unexpected error response. */
