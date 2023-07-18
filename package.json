@@ -1,6 +1,6 @@
 {
   "name": "@aserto/ts-console-backend",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Aserto Console Backend TypeScript type definitions.",
   "types": "index.d.ts",
   "sideEffects": false,
@@ -26,8 +26,8 @@
   "devDependencies": {
     "@rollup/plugin-typescript": "^8.2.5",
     "openapi-typescript": "^4.4.0",
-    "tslib": "^2.3.1",
-    "rollup": "^2.14.0"
+    "rollup": "^2.14.0",
+    "tslib": "^2.3.1"
   },
   "private": false
 }
