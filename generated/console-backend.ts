@@ -49,6 +49,7 @@ export interface components {
       personal_tenant?: components["schemas"]["v1Organization"];
       picture?: string;
       tenants?: components["schemas"]["v1Organization"][];
+      user_id?: string;
     };
     v1GetAccountResponse: {
       result?: components["schemas"]["v1Account"];
