@@ -52,11 +52,18 @@ export interface components {
       personal_tenant?: components["schemas"]["v1Organization"];
       picture?: string;
       tenants?: components["schemas"]["v1Organization"][];
+      user_id?: string;
     };
     v1Connection: {
       description?: string;
       name?: string;
       provider_id?: string;
+    };
+    v1Content: {
+      description?: string;
+      docs_url?: string;
+      short_description?: string;
+      title?: string;
     };
     v1GetAccountResponse: {
       result?: components["schemas"]["v1Account"];
@@ -75,11 +82,10 @@ export interface components {
     };
     v1OnboardingTemplate: {
       connection?: components["schemas"]["v1Connection"];
-      description?: string;
+      content?: components["schemas"]["v1Content"];
+      id?: string;
       manifest?: string;
-      name?: string;
       policy_instance?: components["schemas"]["v1PolicyInstance"];
-      short_description?: string;
     };
     v1Organization: {
       id?: string;
