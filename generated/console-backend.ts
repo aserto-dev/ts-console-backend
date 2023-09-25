@@ -18,6 +18,9 @@ export interface paths {
   "/api/v1/list-tenant-members": {
     get: operations["ConsoleBackend_ListTenantMember"];
   };
+  "/api/v1/onboarding-templates": {
+    get: operations["ConsoleBackend_ListOnboardingTemplates"];
+  };
 }
 
 export interface components {
@@ -51,6 +54,17 @@ export interface components {
       tenants?: components["schemas"]["v1Organization"][];
       user_id?: string;
     };
+    v1Connection: {
+      description?: string;
+      name?: string;
+      provider_id?: string;
+    };
+    v1Content: {
+      description?: string;
+      docs_url?: string;
+      short_description?: string;
+      title?: string;
+    };
     v1GetAccountResponse: {
       result?: components["schemas"]["v1Account"];
     };
@@ -60,13 +74,27 @@ export interface components {
     v1GetUserResponse: {
       result?: components["schemas"]["v1User"];
     };
+    v1ListOnboardingTemplatesResponse: {
+      results?: components["schemas"]["v1OnboardingTemplate"][];
+    };
     v1ListTenantMemberResponse: {
       results?: components["schemas"]["v1TenantMember"][];
+    };
+    v1OnboardingTemplate: {
+      connection?: components["schemas"]["v1Connection"];
+      content?: components["schemas"]["v1Content"];
+      id?: string;
+      manifest?: string;
+      policy_instance?: components["schemas"]["v1PolicyInstance"];
     };
     v1Organization: {
       id?: string;
       name?: string;
       personal?: boolean;
+    };
+    v1PolicyInstance: {
+      image?: string;
+      name?: string;
     };
     v1Tenant: {
       display_name?: string;
@@ -191,6 +219,22 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["v1ListTenantMemberResponse"];
+        };
+      };
+      /** An unexpected error response. */
+      default: {
+        content: {
+          "application/json": components["schemas"]["rpcStatus"];
+        };
+      };
+    };
+  };
+  ConsoleBackend_ListOnboardingTemplates: {
+    responses: {
+      /** A successful response. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["v1ListOnboardingTemplatesResponse"];
         };
       };
       /** An unexpected error response. */
