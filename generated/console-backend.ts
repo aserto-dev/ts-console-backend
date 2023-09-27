@@ -104,10 +104,17 @@ export interface components {
       properties?: { [key: string]: unknown };
     };
     v1TenantMember: {
+      /** user display name */
       display_name?: string;
+      /** user email */
       email?: string;
+      /** account id */
       id?: string;
+      /** user id (key) */
+      key?: string;
+      /** user picture */
       picture?: string;
+      /** role in tenant */
       role?: string;
     };
     v1UpdateAccountDefaultOrganizationResponse: {
