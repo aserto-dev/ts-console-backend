@@ -21,6 +21,9 @@ export interface paths {
   "/api/v1/onboarding-templates": {
     get: operations["ConsoleBackend_ListOnboardingTemplates"];
   };
+  "/api/v1/resend-verification-email": {
+    post: operations["ConsoleBackend_ResendVerificationEmail"];
+  };
 }
 
 export interface components {
@@ -96,6 +99,7 @@ export interface components {
       image?: string;
       name?: string;
     };
+    v1ResendVerificationEmailResponse: { [key: string]: unknown };
     v1Tenant: {
       display_name?: string;
       hash?: string;
@@ -126,6 +130,7 @@ export interface components {
     v1User: {
       display_name?: string;
       email?: string;
+      enabled?: boolean;
       hash?: string;
       id?: string;
       key?: string;
@@ -242,6 +247,22 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["v1ListOnboardingTemplatesResponse"];
+        };
+      };
+      /** An unexpected error response. */
+      default: {
+        content: {
+          "application/json": components["schemas"]["rpcStatus"];
+        };
+      };
+    };
+  };
+  ConsoleBackend_ResendVerificationEmail: {
+    responses: {
+      /** A successful response. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["v1ResendVerificationEmailResponse"];
         };
       };
       /** An unexpected error response. */
