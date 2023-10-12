@@ -51,6 +51,7 @@ export interface components {
       default_tenant_id?: string;
       display_name?: string;
       email?: string;
+      enabled?: boolean;
       id?: string;
       personal_tenant?: components["schemas"]["v1Organization"];
       picture?: string;
@@ -130,7 +131,6 @@ export interface components {
     v1User: {
       display_name?: string;
       email?: string;
-      enabled?: boolean;
       hash?: string;
       id?: string;
       key?: string;
