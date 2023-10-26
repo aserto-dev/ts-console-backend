@@ -87,6 +87,7 @@ export interface components {
     v1OnboardingTemplate: {
       connection?: components["schemas"]["v1Connection"];
       content?: components["schemas"]["v1Content"];
+      data_provider_id?: string;
       id?: string;
       manifest?: string;
       policy_instance?: components["schemas"]["v1PolicyInstance"];
