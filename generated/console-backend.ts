@@ -4,6 +4,9 @@
  */
 
 export interface paths {
+  "/api/v1/dex/token": {
+    post: operations["ConsoleBackend_DexToken"];
+  };
   "/api/v1/ds0/account": {
     get: operations["ConsoleBackend_GetAccount"];
     put: operations["ConsoleBackend_UpdateAccountDefaultOrganization"];
@@ -68,6 +71,13 @@ export interface components {
       docs_url?: string;
       short_description?: string;
       title?: string;
+    };
+    v1DexTokenResponse: {
+      access_token?: string;
+      /** Format: int32 */
+      expires_in?: number;
+      id_token?: string;
+      token_type?: string;
     };
     v1GetAccountResponse: {
       result?: components["schemas"]["v1Account"];
@@ -141,6 +151,28 @@ export interface components {
 }
 
 export interface operations {
+  ConsoleBackend_DexToken: {
+    parameters: {
+      query: {
+        username?: string;
+        password?: string;
+      };
+    };
+    responses: {
+      /** A successful response. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["v1DexTokenResponse"];
+        };
+      };
+      /** An unexpected error response. */
+      default: {
+        content: {
+          "application/json": components["schemas"]["rpcStatus"];
+        };
+      };
+    };
+  };
   ConsoleBackend_GetAccount: {
     responses: {
       /** A successful response. */
