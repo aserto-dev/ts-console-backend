@@ -21,6 +21,15 @@ export interface paths {
   "/api/v1/list-tenant-members": {
     get: operations["ConsoleBackend_ListTenantMember"];
   };
+  "/api/v1/members/list": {
+    get: operations["ConsoleBackend_ListTenantMembers"];
+  };
+  "/api/v1/members/remove": {
+    post: operations["ConsoleBackend_RemoveTenantMember"];
+  };
+  "/api/v1/members/update-role": {
+    put: operations["ConsoleBackend_UpdateTenantMemberRole"];
+  };
   "/api/v1/onboarding-templates": {
     get: operations["ConsoleBackend_ListOnboardingTemplates"];
   };
@@ -94,6 +103,9 @@ export interface components {
     v1ListTenantMemberResponse: {
       results?: components["schemas"]["v1TenantMember"][];
     };
+    v1ListTenantMembersResponse: {
+      results?: components["schemas"]["v1TenantMember"][];
+    };
     v1OnboardingTemplate: {
       connection?: components["schemas"]["v1Connection"];
       content?: components["schemas"]["v1Content"];
@@ -111,6 +123,10 @@ export interface components {
       image?: string;
       name?: string;
     };
+    v1RemoveTenantMemberRequest: {
+      user_id?: string;
+    };
+    v1RemoveTenantMemberResponse: { [key: string]: unknown };
     v1ResendVerificationEmailResponse: { [key: string]: unknown };
     v1Tenant: {
       display_name?: string;
@@ -132,10 +148,17 @@ export interface components {
       picture?: string;
       /** role in tenant */
       role?: string;
+      /** user id */
+      user_id?: string;
     };
     v1UpdateAccountDefaultOrganizationResponse: {
       result?: components["schemas"]["v1Account"];
     };
+    v1UpdateTenantMemberRoleRequest: {
+      role?: string;
+      user_id?: string;
+    };
+    v1UpdateTenantMemberRoleResponse: { [key: string]: unknown };
     v1UpdateTenantResponse: {
       result?: components["schemas"]["v1Tenant"];
     };
@@ -271,6 +294,64 @@ export interface operations {
         content: {
           "application/json": components["schemas"]["rpcStatus"];
         };
+      };
+    };
+  };
+  ConsoleBackend_ListTenantMembers: {
+    responses: {
+      /** A successful response. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["v1ListTenantMembersResponse"];
+        };
+      };
+      /** An unexpected error response. */
+      default: {
+        content: {
+          "application/json": components["schemas"]["rpcStatus"];
+        };
+      };
+    };
+  };
+  ConsoleBackend_RemoveTenantMember: {
+    responses: {
+      /** A successful response. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["v1RemoveTenantMemberResponse"];
+        };
+      };
+      /** An unexpected error response. */
+      default: {
+        content: {
+          "application/json": components["schemas"]["rpcStatus"];
+        };
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["v1RemoveTenantMemberRequest"];
+      };
+    };
+  };
+  ConsoleBackend_UpdateTenantMemberRole: {
+    responses: {
+      /** A successful response. */
+      200: {
+        content: {
+          "application/json": components["schemas"]["v1UpdateTenantMemberRoleResponse"];
+        };
+      };
+      /** An unexpected error response. */
+      default: {
+        content: {
+          "application/json": components["schemas"]["rpcStatus"];
+        };
+      };
+    };
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["v1UpdateTenantMemberRoleRequest"];
       };
     };
   };
