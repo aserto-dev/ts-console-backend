@@ -21,14 +21,12 @@ export interface paths {
   "/api/v1/list-tenant-members": {
     get: operations["ConsoleBackend_ListTenantMember"];
   };
-  "/api/v1/members/list": {
+  "/api/v1/members": {
     get: operations["ConsoleBackend_ListTenantMembers"];
   };
-  "/api/v1/members/remove": {
-    post: operations["ConsoleBackend_RemoveTenantMember"];
-  };
-  "/api/v1/members/update-role": {
-    put: operations["ConsoleBackend_UpdateTenantMemberRole"];
+  "/api/v1/members/{id}": {
+    delete: operations["ConsoleBackend_RemoveTenantMember"];
+    patch: operations["ConsoleBackend_UpdateTenantMemberRole"];
   };
   "/api/v1/onboarding-templates": {
     get: operations["ConsoleBackend_ListOnboardingTemplates"];
@@ -123,9 +121,6 @@ export interface components {
       image?: string;
       name?: string;
     };
-    v1RemoveTenantMemberRequest: {
-      user_id?: string;
-    };
     v1RemoveTenantMemberResponse: { [key: string]: unknown };
     v1ResendVerificationEmailResponse: { [key: string]: unknown };
     v1Tenant: {
@@ -153,10 +148,6 @@ export interface components {
     };
     v1UpdateAccountDefaultOrganizationResponse: {
       result?: components["schemas"]["v1Account"];
-    };
-    v1UpdateTenantMemberRoleRequest: {
-      role?: string;
-      user_id?: string;
     };
     v1UpdateTenantMemberRoleResponse: { [key: string]: unknown };
     v1UpdateTenantResponse: {
@@ -314,6 +305,11 @@ export interface operations {
     };
   };
   ConsoleBackend_RemoveTenantMember: {
+    parameters: {
+      path: {
+        id: string;
+      };
+    };
     responses: {
       /** A successful response. */
       200: {
@@ -328,13 +324,13 @@ export interface operations {
         };
       };
     };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["v1RemoveTenantMemberRequest"];
-      };
-    };
   };
   ConsoleBackend_UpdateTenantMemberRole: {
+    parameters: {
+      path: {
+        id: string;
+      };
+    };
     responses: {
       /** A successful response. */
       200: {
@@ -351,7 +347,9 @@ export interface operations {
     };
     requestBody: {
       content: {
-        "application/json": components["schemas"]["v1UpdateTenantMemberRoleRequest"];
+        "application/json": {
+          role?: string;
+        };
       };
     };
   };
