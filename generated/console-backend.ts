@@ -4,385 +4,648 @@
  */
 
 export interface paths {
-  "/api/v1/dex/token": {
-    post: operations["ConsoleBackend_DexToken"];
-  };
-  "/api/v1/ds0/account": {
-    get: operations["ConsoleBackend_GetAccount"];
-    put: operations["ConsoleBackend_UpdateAccountDefaultOrganization"];
-  };
-  "/api/v1/ds0/tenant": {
-    get: operations["ConsoleBackend_GetTenant"];
-    put: operations["ConsoleBackend_UpdateTenant"];
-  };
-  "/api/v1/ds0/user": {
-    get: operations["ConsoleBackend_GetUser"];
-  };
-  "/api/v1/list-tenant-members": {
-    get: operations["ConsoleBackend_ListTenantMember"];
-  };
-  "/api/v1/members": {
-    get: operations["ConsoleBackend_ListTenantMembers"];
-  };
-  "/api/v1/members/{id}": {
-    delete: operations["ConsoleBackend_RemoveTenantMember"];
-    patch: operations["ConsoleBackend_UpdateTenantMemberRole"];
-  };
-  "/api/v1/onboarding-templates": {
-    get: operations["ConsoleBackend_ListOnboardingTemplates"];
-  };
-  "/api/v1/resend-verification-email": {
-    post: operations["ConsoleBackend_ResendVerificationEmail"];
-  };
+    "/api/v1/dex/token": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["ConsoleBackend_DexToken"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/ds0/account": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["ConsoleBackend_GetAccount"];
+        put: operations["ConsoleBackend_UpdateAccountDefaultOrganization"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/ds0/tenant": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["ConsoleBackend_GetTenant"];
+        put: operations["ConsoleBackend_UpdateTenant"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/ds0/user": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["ConsoleBackend_GetUser"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/list-tenant-members": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["ConsoleBackend_ListTenantMember"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/members": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["ConsoleBackend_ListTenantMembers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/members/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["ConsoleBackend_RemoveTenantMember"];
+        options?: never;
+        head?: never;
+        patch: operations["ConsoleBackend_UpdateTenantMemberRole"];
+        trace?: never;
+    };
+    "/api/v1/onboarding-templates": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["ConsoleBackend_ListOnboardingTemplates"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/resend-verification-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["ConsoleBackend_ResendVerificationEmail"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
-
+export type webhooks = Record<string, never>;
 export interface components {
-  schemas: {
-    protobufAny: {
-      "@type"?: string;
-    } & { [key: string]: unknown };
-    /**
-     * @description `NullValue` is a singleton enumeration to represent the null value for the
-     * `Value` type union.
-     *
-     *  The JSON representation for `NullValue` is JSON `null`.
-     *
-     *  - NULL_VALUE: Null value.
-     * @default NULL_VALUE
-     */
-    protobufNullValue: "NULL_VALUE";
-    rpcStatus: {
-      /** Format: int32 */
-      code?: number;
-      details?: components["schemas"]["protobufAny"][];
-      message?: string;
+    schemas: {
+        protobufAny: {
+            "@type"?: string;
+        } & {
+            [key: string]: unknown;
+        };
+        /**
+         * @description `NullValue` is a singleton enumeration to represent the null value for the
+         *     `Value` type union.
+         *
+         *      The JSON representation for `NullValue` is JSON `null`.
+         *
+         *      - NULL_VALUE: Null value.
+         * @default NULL_VALUE
+         * @enum {string}
+         */
+        protobufNullValue: "NULL_VALUE";
+        rpcStatus: {
+            /** Format: int32 */
+            code?: number;
+            details?: components["schemas"]["protobufAny"][];
+            message?: string;
+        };
+        v1Account: {
+            default_tenant_id?: string;
+            display_name?: string;
+            email?: string;
+            enabled?: boolean;
+            id?: string;
+            personal_tenant?: components["schemas"]["v1Organization"];
+            picture?: string;
+            tenants?: components["schemas"]["v1Organization"][];
+            user_id?: string;
+        };
+        v1Connection: {
+            description?: string;
+            name?: string;
+            provider_id?: string;
+        };
+        v1Content: {
+            description?: string;
+            docs_url?: string;
+            short_description?: string;
+            title?: string;
+        };
+        v1DexTokenResponse: {
+            access_token?: string;
+            /** Format: int32 */
+            expires_in?: number;
+            id_token?: string;
+            token_type?: string;
+        };
+        v1GetAccountResponse: {
+            result?: components["schemas"]["v1Account"];
+        };
+        v1GetTenantResponse: {
+            result?: components["schemas"]["v1Tenant"];
+        };
+        v1GetUserResponse: {
+            result?: components["schemas"]["v1User"];
+        };
+        v1ListOnboardingTemplatesResponse: {
+            results?: components["schemas"]["v1OnboardingTemplate"][];
+        };
+        v1ListTenantMemberResponse: {
+            results?: components["schemas"]["v1TenantMember"][];
+        };
+        v1ListTenantMembersResponse: {
+            results?: components["schemas"]["v1TenantMember"][];
+        };
+        v1OnboardingTemplate: {
+            connection?: components["schemas"]["v1Connection"];
+            content?: components["schemas"]["v1Content"];
+            data_provider?: components["schemas"]["v1Connection"];
+            id?: string;
+            manifest?: string;
+            policy_instance?: components["schemas"]["v1PolicyInstance"];
+        };
+        v1Organization: {
+            id?: string;
+            name?: string;
+            personal?: boolean;
+        };
+        v1PolicyInstance: {
+            image?: string;
+            name?: string;
+        };
+        v1RemoveTenantMemberResponse: Record<string, never>;
+        v1ResendVerificationEmailResponse: Record<string, never>;
+        v1Tenant: {
+            display_name?: string;
+            hash?: string;
+            id?: string;
+            key?: string;
+            properties?: Record<string, never>;
+        };
+        v1TenantMember: {
+            /** user display name */
+            display_name?: string;
+            /** user email */
+            email?: string;
+            /** account id */
+            id?: string;
+            /** user id (key) */
+            key?: string;
+            /** user picture */
+            picture?: string;
+            /** role in tenant */
+            role?: string;
+        };
+        v1UpdateAccountDefaultOrganizationResponse: {
+            result?: components["schemas"]["v1Account"];
+        };
+        v1UpdateTenantMemberRoleResponse: Record<string, never>;
+        v1UpdateTenantResponse: {
+            result?: components["schemas"]["v1Tenant"];
+        };
+        v1User: {
+            display_name?: string;
+            email?: string;
+            hash?: string;
+            id?: string;
+            key?: string;
+            properties?: Record<string, never>;
+        };
     };
-    v1Account: {
-      default_tenant_id?: string;
-      display_name?: string;
-      email?: string;
-      enabled?: boolean;
-      id?: string;
-      personal_tenant?: components["schemas"]["v1Organization"];
-      picture?: string;
-      tenants?: components["schemas"]["v1Organization"][];
-      user_id?: string;
-    };
-    v1Connection: {
-      description?: string;
-      name?: string;
-      provider_id?: string;
-    };
-    v1Content: {
-      description?: string;
-      docs_url?: string;
-      short_description?: string;
-      title?: string;
-    };
-    v1DexTokenResponse: {
-      access_token?: string;
-      /** Format: int32 */
-      expires_in?: number;
-      id_token?: string;
-      token_type?: string;
-    };
-    v1GetAccountResponse: {
-      result?: components["schemas"]["v1Account"];
-    };
-    v1GetTenantResponse: {
-      result?: components["schemas"]["v1Tenant"];
-    };
-    v1GetUserResponse: {
-      result?: components["schemas"]["v1User"];
-    };
-    v1ListOnboardingTemplatesResponse: {
-      results?: components["schemas"]["v1OnboardingTemplate"][];
-    };
-    v1ListTenantMemberResponse: {
-      results?: components["schemas"]["v1TenantMember"][];
-    };
-    v1ListTenantMembersResponse: {
-      results?: components["schemas"]["v1TenantMember"][];
-    };
-    v1OnboardingTemplate: {
-      connection?: components["schemas"]["v1Connection"];
-      content?: components["schemas"]["v1Content"];
-      data_provider?: components["schemas"]["v1Connection"];
-      id?: string;
-      manifest?: string;
-      policy_instance?: components["schemas"]["v1PolicyInstance"];
-    };
-    v1Organization: {
-      id?: string;
-      name?: string;
-      personal?: boolean;
-    };
-    v1PolicyInstance: {
-      image?: string;
-      name?: string;
-    };
-    v1RemoveTenantMemberResponse: { [key: string]: unknown };
-    v1ResendVerificationEmailResponse: { [key: string]: unknown };
-    v1Tenant: {
-      display_name?: string;
-      hash?: string;
-      id?: string;
-      key?: string;
-      properties?: { [key: string]: unknown };
-    };
-    v1TenantMember: {
-      /** user display name */
-      display_name?: string;
-      /** user email */
-      email?: string;
-      /** account id */
-      id?: string;
-      /** user id (key) */
-      key?: string;
-      /** user picture */
-      picture?: string;
-      /** role in tenant */
-      role?: string;
-    };
-    v1UpdateAccountDefaultOrganizationResponse: {
-      result?: components["schemas"]["v1Account"];
-    };
-    v1UpdateTenantMemberRoleResponse: { [key: string]: unknown };
-    v1UpdateTenantResponse: {
-      result?: components["schemas"]["v1Tenant"];
-    };
-    v1User: {
-      display_name?: string;
-      email?: string;
-      hash?: string;
-      id?: string;
-      key?: string;
-      properties?: { [key: string]: unknown };
-    };
-  };
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
-
+export type $defs = Record<string, never>;
 export interface operations {
-  ConsoleBackend_DexToken: {
-    parameters: {
-      query: {
-        username?: string;
-        password?: string;
-      };
+    ConsoleBackend_DexToken: {
+        parameters: {
+            query?: {
+                username?: string;
+                password?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description A successful response. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["v1DexTokenResponse"];
+                };
+            };
+            /** @description An unexpected error response. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["rpcStatus"];
+                };
+            };
+        };
     };
-    responses: {
-      /** A successful response. */
-      200: {
-        content: {
-          "application/json": components["schemas"]["v1DexTokenResponse"];
+    ConsoleBackend_GetAccount: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** An unexpected error response. */
-      default: {
-        content: {
-          "application/json": components["schemas"]["rpcStatus"];
+        requestBody?: never;
+        responses: {
+            /** @description A successful response. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["v1GetAccountResponse"];
+                };
+            };
+            /** @description An unexpected error response. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["rpcStatus"];
+                };
+            };
         };
-      };
     };
-  };
-  ConsoleBackend_GetAccount: {
-    responses: {
-      /** A successful response. */
-      200: {
-        content: {
-          "application/json": components["schemas"]["v1GetAccountResponse"];
+    ConsoleBackend_UpdateAccountDefaultOrganization: {
+        parameters: {
+            query?: {
+                default_organization?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** An unexpected error response. */
-      default: {
-        content: {
-          "application/json": components["schemas"]["rpcStatus"];
+        requestBody?: never;
+        responses: {
+            /** @description A successful response. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["v1UpdateAccountDefaultOrganizationResponse"];
+                };
+            };
+            /** @description An unexpected error response. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["rpcStatus"];
+                };
+            };
         };
-      };
     };
-  };
-  ConsoleBackend_UpdateAccountDefaultOrganization: {
-    parameters: {
-      query: {
-        default_organization?: string;
-      };
+    ConsoleBackend_GetTenant: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description A successful response. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["v1GetTenantResponse"];
+                };
+            };
+            /** @description An unexpected error response. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["rpcStatus"];
+                };
+            };
+        };
     };
-    responses: {
-      /** A successful response. */
-      200: {
-        content: {
-          "application/json": components["schemas"]["v1UpdateAccountDefaultOrganizationResponse"];
+    ConsoleBackend_UpdateTenant: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** An unexpected error response. */
-      default: {
-        content: {
-          "application/json": components["schemas"]["rpcStatus"];
+        requestBody?: never;
+        responses: {
+            /** @description A successful response. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["v1UpdateTenantResponse"];
+                };
+            };
+            /** @description An unexpected error response. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["rpcStatus"];
+                };
+            };
         };
-      };
     };
-  };
-  ConsoleBackend_GetTenant: {
-    responses: {
-      /** A successful response. */
-      200: {
-        content: {
-          "application/json": components["schemas"]["v1GetTenantResponse"];
+    ConsoleBackend_GetUser: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** An unexpected error response. */
-      default: {
-        content: {
-          "application/json": components["schemas"]["rpcStatus"];
+        requestBody?: never;
+        responses: {
+            /** @description A successful response. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["v1GetUserResponse"];
+                };
+            };
+            /** @description An unexpected error response. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["rpcStatus"];
+                };
+            };
         };
-      };
     };
-  };
-  ConsoleBackend_UpdateTenant: {
-    responses: {
-      /** A successful response. */
-      200: {
-        content: {
-          "application/json": components["schemas"]["v1UpdateTenantResponse"];
+    ConsoleBackend_ListTenantMember: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** An unexpected error response. */
-      default: {
-        content: {
-          "application/json": components["schemas"]["rpcStatus"];
+        requestBody?: never;
+        responses: {
+            /** @description A successful response. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["v1ListTenantMemberResponse"];
+                };
+            };
+            /** @description An unexpected error response. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["rpcStatus"];
+                };
+            };
         };
-      };
     };
-  };
-  ConsoleBackend_GetUser: {
-    responses: {
-      /** A successful response. */
-      200: {
-        content: {
-          "application/json": components["schemas"]["v1GetUserResponse"];
+    ConsoleBackend_ListTenantMembers: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** An unexpected error response. */
-      default: {
-        content: {
-          "application/json": components["schemas"]["rpcStatus"];
+        requestBody?: never;
+        responses: {
+            /** @description A successful response. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["v1ListTenantMembersResponse"];
+                };
+            };
+            /** @description An unexpected error response. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["rpcStatus"];
+                };
+            };
         };
-      };
     };
-  };
-  ConsoleBackend_ListTenantMember: {
-    responses: {
-      /** A successful response. */
-      200: {
-        content: {
-          "application/json": components["schemas"]["v1ListTenantMemberResponse"];
+    ConsoleBackend_RemoveTenantMember: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-      };
-      /** An unexpected error response. */
-      default: {
-        content: {
-          "application/json": components["schemas"]["rpcStatus"];
+        requestBody?: never;
+        responses: {
+            /** @description A successful response. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["v1RemoveTenantMemberResponse"];
+                };
+            };
+            /** @description An unexpected error response. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["rpcStatus"];
+                };
+            };
         };
-      };
     };
-  };
-  ConsoleBackend_ListTenantMembers: {
-    responses: {
-      /** A successful response. */
-      200: {
-        content: {
-          "application/json": components["schemas"]["v1ListTenantMembersResponse"];
+    ConsoleBackend_UpdateTenantMemberRole: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-      };
-      /** An unexpected error response. */
-      default: {
-        content: {
-          "application/json": components["schemas"]["rpcStatus"];
+        requestBody: {
+            content: {
+                "application/json": {
+                    role?: string;
+                };
+            };
         };
-      };
+        responses: {
+            /** @description A successful response. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["v1UpdateTenantMemberRoleResponse"];
+                };
+            };
+            /** @description An unexpected error response. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["rpcStatus"];
+                };
+            };
+        };
     };
-  };
-  ConsoleBackend_RemoveTenantMember: {
-    parameters: {
-      path: {
-        id: string;
-      };
+    ConsoleBackend_ListOnboardingTemplates: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description A successful response. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["v1ListOnboardingTemplatesResponse"];
+                };
+            };
+            /** @description An unexpected error response. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["rpcStatus"];
+                };
+            };
+        };
     };
-    responses: {
-      /** A successful response. */
-      200: {
-        content: {
-          "application/json": components["schemas"]["v1RemoveTenantMemberResponse"];
+    ConsoleBackend_ResendVerificationEmail: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-      /** An unexpected error response. */
-      default: {
-        content: {
-          "application/json": components["schemas"]["rpcStatus"];
+        requestBody?: never;
+        responses: {
+            /** @description A successful response. */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["v1ResendVerificationEmailResponse"];
+                };
+            };
+            /** @description An unexpected error response. */
+            default: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["rpcStatus"];
+                };
+            };
         };
-      };
     };
-  };
-  ConsoleBackend_UpdateTenantMemberRole: {
-    parameters: {
-      path: {
-        id: string;
-      };
-    };
-    responses: {
-      /** A successful response. */
-      200: {
-        content: {
-          "application/json": components["schemas"]["v1UpdateTenantMemberRoleResponse"];
-        };
-      };
-      /** An unexpected error response. */
-      default: {
-        content: {
-          "application/json": components["schemas"]["rpcStatus"];
-        };
-      };
-    };
-    requestBody: {
-      content: {
-        "application/json": {
-          role?: string;
-        };
-      };
-    };
-  };
-  ConsoleBackend_ListOnboardingTemplates: {
-    responses: {
-      /** A successful response. */
-      200: {
-        content: {
-          "application/json": components["schemas"]["v1ListOnboardingTemplatesResponse"];
-        };
-      };
-      /** An unexpected error response. */
-      default: {
-        content: {
-          "application/json": components["schemas"]["rpcStatus"];
-        };
-      };
-    };
-  };
-  ConsoleBackend_ResendVerificationEmail: {
-    responses: {
-      /** A successful response. */
-      200: {
-        content: {
-          "application/json": components["schemas"]["v1ResendVerificationEmailResponse"];
-        };
-      };
-      /** An unexpected error response. */
-      default: {
-        content: {
-          "application/json": components["schemas"]["rpcStatus"];
-        };
-      };
-    };
-  };
 }
-
-export interface external {}
